@@ -7,7 +7,9 @@
     "build": "next build",
     "dev": "next dev",
     "lint": "next lint",
-    "start": "next start"
+    "start": "next start",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
     "@clerk/nextjs": "^5.5.3",
@@ -46,6 +48,5 @@
   },
   "ct3aMetadata": {
     "initVersion": "7.37.0"
-  },
-  "packageManager": "pnpm@9.1.4"
+  }
 }
