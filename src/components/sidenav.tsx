@@ -4,13 +4,13 @@ import { Card, CardContent } from "~/components/ui/card";
 import { Button } from "~/components/ui/button";
 import { PlusCircle, Users } from "lucide-react";
 import { UserButton } from "@clerk/nextjs";
-import { createTeam } from "~/lib/server-actions";
+import { createTeam } from "~/server/server-actions";
 
 export default function SideNav() {
   const [scrollPosition, setScrollPosition] = useState(0);
 
-  const handleScroll = (e: any) => {
-    const container = e.target;
+  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const container = e.currentTarget;
     const maxScroll = container.scrollHeight - container.clientHeight;
     const currentScroll = container.scrollTop;
     setScrollPosition((currentScroll / maxScroll) * 100);
@@ -36,7 +36,9 @@ export default function SideNav() {
           <Card
             key={team.id}
             className={`m-2 cursor-pointer border-gray-600 bg-gray-700 transition-colors duration-200 hover:bg-gray-600`}
-            onClick={() => {}}
+            onClick={() => {
+              console.log("");
+            }}
           >
             <CardContent className="flex items-center p-4">
               <Users className="mr-2 h-5 w-5 text-blue-400" />
