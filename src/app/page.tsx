@@ -1,19 +1,20 @@
-import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
-import { Button } from "~/components/ui/button";
 import Link from "next/link";
+import { Button } from "~/components/ui/button";
 
 export default function HomePage() {
   return (
-    <>
-      <SignedOut>
-        <Button>
-          <Link href="/signin">Sign in</Link>
-        </Button>
-      </SignedOut>
-      <SignedIn>
-        <UserButton />
-      </SignedIn>
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white"></main>
-    </>
+    <main className="flex min-h-screen flex-col items-center justify-center">
+      <div className="grid grid-cols-2 gap-4">
+        <div className="flex flex-col items-start gap-4">
+          <h1 className="text-7xl">Welcome to Ace</h1>
+          <p className="text-lg">The best way to manage your projects</p>
+          <Link href="/dashboard">
+            <Button className="bg-gray-900 text-white transition-transform hover:scale-105 hover:bg-slate-900">
+              Start cooking 🍳
+            </Button>
+          </Link>
+        </div>
+      </div>
+    </main>
   );
 }

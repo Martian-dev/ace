@@ -4,6 +4,8 @@ import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
 
 import { ClerkProvider } from "@clerk/nextjs";
+import { dark } from "@clerk/themes";
+import Navbar from "~/components/navbar";
 
 export const metadata: Metadata = {
   title: "Create T3 App",
@@ -15,9 +17,12 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <ClerkProvider>
+    <ClerkProvider appearance={{ baseTheme: dark }}>
       <html lang="en" className={`${GeistSans.variable}`}>
-        <body>{children}</body>
+        <body className="dark h-full w-full bg-gray-800 text-white">
+          <Navbar />
+          {children}
+        </body>
       </html>
     </ClerkProvider>
   );
