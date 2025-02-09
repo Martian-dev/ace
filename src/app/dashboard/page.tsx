@@ -1,27 +1,12 @@
-import React from "react";
+import { Header } from "~/components/header";
 
-const Dashboard = () => {
+export default function Dashboard() {
   return (
-    <div style={{ display: "flex" }}>
-      <Sidebar />
-      <div style={{ flex: 1, padding: "20px" }}>
-        <h1>App Name</h1>
-        {/* ...existing code... */}
-      </div>
+    <div className="flex h-full w-full flex-col">
+      <Header />
+      <main className="p-6">
+        <h1 className="mb-6 text-2xl font-semibold">Today</h1>
+      </main>
     </div>
   );
-};
-
-const Sidebar = () => {
-  return (
-    <div style={{ width: "200px", background: "#f4f4f4", padding: "20px" }}>
-      <ul>
-        <li>Home</li>
-        <li>Profile</li>
-        <li>Settings</li>
-      </ul>
-    </div>
-  );
-};
-
-export default Dashboard;
+}

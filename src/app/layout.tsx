@@ -5,7 +5,6 @@ import { type Metadata } from "next";
 
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
-import Navbar from "~/components/navbar";
 
 export const metadata: Metadata = {
   title: "Create T3 App",
@@ -19,8 +18,7 @@ export default function RootLayout({
   return (
     <ClerkProvider appearance={{ baseTheme: dark }}>
       <html lang="en" className={`${GeistSans.variable}`}>
-        <body className="dark h-full w-full bg-gray-800 text-white">
-          <Navbar />
+        <body className="dark flex h-screen w-screen flex-col bg-gray-800 text-white">
           {children}
         </body>
       </html>
