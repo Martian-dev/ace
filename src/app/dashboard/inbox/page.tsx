@@ -1,12 +1,10 @@
 import React from "react";
 import { Mail } from "lucide-react";
+import { fetchAllTasks } from "~/server/data";
 
-const InboxPage = () => {
-  const tasks = [
-    { id: 1, title: "Task 1", description: "Description for task 1" },
-    { id: 2, title: "Task 2", description: "Description for task 2" },
-    { id: 3, title: "Task 3", description: "Description for task 3" },
-  ];
+export const dynamic = "force-dynamic";
+export default async function InboxPage() {
+  const tasks = await fetchAllTasks();
 
   return (
     <div className="p-5">
@@ -25,6 +23,4 @@ const InboxPage = () => {
       </ul>
     </div>
   );
-};
-
-export default InboxPage;
+}

@@ -1,5 +1,6 @@
 "use server";
 
+import "server-only";
 import { unstable_noStore as noStore } from "next/cache";
 import { auth } from "@clerk/nextjs/server";
 import { db } from "~/server/db";
@@ -45,8 +46,21 @@ export async function fetchTodayTasks() {
   return todaysTasks;
 }
 
-// export async function fetchAllTasks() {
-//     noStore();
-//   const response = await fetch("/api/tasks/today");
-//   return response.json();
-// }
+export async function fetchAllTasks() {
+  noStore();
+  const user_id = auth().userId;
+  let orgId = auth().orgId;
+
+  if (!user_id) {
+    return [];
+  }
+  if (!orgId) {
+    orgId = user_id;
+  }
+
+  const allTasks = await db
+    .select()
+    .from(tasks)
+    .where(and(eq(tasks.user_id, user_id), eq(tasks.team_id, orgId)));
+  return allTasks;
+}
