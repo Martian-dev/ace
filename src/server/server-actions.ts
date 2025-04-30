@@ -9,6 +9,13 @@ import { InsertTask } from "~/server/db/schema";
 export async function addTask(formData: FormData) {
   const orgId = auth().orgId ? auth().orgId : auth().userId;
 
+  const dueDate = formData.get("due")?.toString();
+
+  let due = null;
+  if (dueDate) {
+    due = new Date(dueDate);
+  }
+
   const validatedData = InsertTask.safeParse({
     title: formData.get("title"),
     description: formData.get("description"),
@@ -17,11 +24,12 @@ export async function addTask(formData: FormData) {
   });
 
   if (!validatedData.success) {
+    console.log("didnt work");
     return {
       errors: validatedData.error.flatten().fieldErrors,
       message: "Missing fields. Failed to create task.",
     };
   }
 
-  await db.insert(tasks).values(validatedData.data);
+  await db.insert(tasks).values({ ...validatedData.data, due });
 }
